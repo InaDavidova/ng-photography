@@ -1,2 +1,2 @@
 # ng-photography
-An Angular app for photography
+This is an Angular app for photography.
