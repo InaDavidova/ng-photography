@@ -1,0 +1,66 @@
+article {
+  position: relative;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+article > * {
+  transition: 0.5s;
+}
+
+article h2 {
+  font-size: 2rem;
+  position: absolute;
+  bottom: 15px;
+  opacity: 0;
+  color: rgb(238, 232, 232);
+  text-shadow: 0 2px 5px rgb(0, 0, 0);
+  margin: 0 0 15px 0;
+}
+
+article p {
+  position: absolute;
+  text-indent: 5px;
+  bottom: 0;
+  opacity: 0;
+  color: rgb(255, 221, 248);
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+
+article button {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  font-size: 1.5rem;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+article:hover h2 {
+  opacity: 1;
+  transform: scale(0.8);
+}
+
+article:hover p {
+  opacity: 1;
+  transform: scale(0.7);
+}
+
+article:hover button {
+  opacity: 1;
+}
+
+article button:hover {
+  transform: scale(1.5);
+}
+
+article:hover img {
+  transform: scale(1.2);
+  filter: brightness(40%);
+}
