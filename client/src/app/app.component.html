@@ -1,4 +1,4 @@
 <div class="content" role="main">
-  <app-photo-card></app-photo-card>
+  <app-photo-card *ngFor="let photoData of data" [photoData]="photoData"></app-photo-card>
 </div>
 <router-outlet></router-outlet>

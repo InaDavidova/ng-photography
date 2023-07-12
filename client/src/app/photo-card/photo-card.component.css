@@ -1,6 +1,7 @@
 article {
   position: relative;
   width: min-content;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
