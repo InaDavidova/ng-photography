@@ -1,6 +1,8 @@
 <article>
-    <img src="{{data.url}}" alt="picture of {{data.title}}">
-    <h2>{{data.title}}</h2>
-    <p>By {{data.owner}}</p>
-    <button><i class="fa-solid fa-heart" style="color: #f30a0a;"></i></button>
+  <a [routerLink]="['/details/' + data.id]">
+    <img src="{{ data.url }}" alt="picture of {{ data.title }}" />
+    <h2>{{ data.title }}</h2>
+    <p>By {{ data.owner }}</p>
+  </a>
+  <button><i class="fa-solid fa-heart" style="color: #f30a0a"></i></button>
 </article>
