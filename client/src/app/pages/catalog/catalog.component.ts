@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IPhotoData } from 'src/app/interfaces/photoData';
 import { data } from 'src/app/storage/data';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.css']
+  styleUrls: ['./catalog.component.css'],
 })
-export class CatalogComponent {
+export class CatalogComponent implements OnInit {
+  data!: IPhotoData[];
+  isLoading!: boolean;
 
-  data: IPhotoData[] = data;
+  ngOnInit(): void {
+    this.isLoading = true;
+
+    // a request for data here
+    setTimeout(() => {
+      this.data = data;
+      this.isLoading = false;
+    },1000);
+
+  }
 }

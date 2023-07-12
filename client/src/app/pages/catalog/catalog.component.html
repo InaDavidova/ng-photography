@@ -1,3 +1,10 @@
-<div class="content" role="main">
-  <app-photo-card *ngFor="let photoData of data" [photoData]="photoData" ></app-photo-card>
+<div *ngIf="!isLoading; else loadingIndicator" class="content" role="main">
+  <app-photo-card
+    *ngFor="let photoData of data"
+    [photoData]="photoData"
+  ></app-photo-card>
 </div>
+
+<ng-template #loadingIndicator>
+  Loading ...
+</ng-template>
