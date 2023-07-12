@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IPhotoData } from '../interfaces/photoData';
+import { IPhotoData } from '../../interfaces/photoData';
 
 @Component({
   selector: 'app-photo-card',

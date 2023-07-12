@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { data } from './storage/data';
-import { IPhotoData } from './interfaces/photoData';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +7,4 @@ import { IPhotoData } from './interfaces/photoData';
 })
 export class AppComponent {
   title = 'Photography';
-  data: IPhotoData[] = data;
 }
