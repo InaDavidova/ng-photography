@@ -1,4 +1,8 @@
 .content{
-    background-color: black;
-    min-height: 100vh;
+    background-color: hsl(195, 44%, 96%);
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    align-items: center;
+    padding-top: 15px;
 }

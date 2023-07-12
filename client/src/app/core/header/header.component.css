@@ -1,0 +1,54 @@
+header {
+  background-color: #282c34;
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.1em;
+  color: white;
+}
+
+header h1 {
+  font-size: 1em;
+}
+
+nav {
+  width: 80%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  height: 12vh;
+}
+
+li:has(.active-link) {
+  font-weight: 800;
+  background-color: #f2f8fa;
+  border-top: 1vh solid #282c34;
+  border-bottom: 1px solid #f2f8fa;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  height: 12vh;
+}
+
+li a.active-link {
+  color: #282c34;
+}
+
+li {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+  height: inherit;
+  border-top: 1vh solid #282c34;
+  transition: 0.3s;
+
+}
+
+li a {
+  text-decoration: none;
+  color: antiquewhite;
+}
