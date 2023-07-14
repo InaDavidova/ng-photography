@@ -23,7 +23,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule,
+    CoreModule.forRoot(),
     SharedModule
   ],
   providers: [],

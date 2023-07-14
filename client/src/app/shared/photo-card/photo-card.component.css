@@ -4,8 +4,6 @@
 
 article {
   position: relative;
-  width: min-content;
-  max-width: 350px;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
@@ -13,8 +11,11 @@ article {
   cursor: pointer;
 }
 
-article img{
-  width: -webkit-fill-available;
+article img {
+  max-width: 330px;
+  max-height: 330px;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 article h2 {
