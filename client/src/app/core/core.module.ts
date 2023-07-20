@@ -2,8 +2,8 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { UserService } from './user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   imports: [CommonModule, AppRoutingModule],
@@ -16,7 +16,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        UserService,
+        { provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor },
         //all services from this module
       ],
     };

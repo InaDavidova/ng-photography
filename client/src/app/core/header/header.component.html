@@ -1,12 +1,16 @@
 <header>
   <h1>PhotoHub</h1>
+  <p  *ngIf="(isLoggedIn$ | async)">
+    User: {{(currentUser$ | async)?.username}}
+  </p>
   <nav>
     <ul>
       <li><a routerLink="/" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active-link">Home</a></li>
       <li><a routerLink="/catalog" routerLinkActive="active-link">Catalog</a></li>
       <li><a routerLink="/about" routerLinkActive="active-link">About</a></li>
-      <li><a routerLink="/login" routerLinkActive="active-link">Login</a></li>
-      <li><a routerLink="/register" routerLinkActive="active-link">Register</a></li>
+      <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/login" routerLinkActive="active-link">Login</a></li>
+      <li  *ngIf="!(isLoggedIn$ | async)"><a routerLink="/register" routerLinkActive="active-link">Register</a></li>
+      <li  *ngIf="(isLoggedIn$ | async)"><a href="javascript:void(0);" (click)="logoutHandler()">Logout</a></li>
     </ul>
   </nav>
 </header>

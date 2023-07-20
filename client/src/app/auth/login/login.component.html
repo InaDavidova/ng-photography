@@ -1,4 +1,4 @@
-<form [formGroup]="loginFormGroup">
+<form [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
   <h2>Login Form</h2>
 
   <fieldset>
@@ -49,6 +49,8 @@
             Password needs to be at least 6 characters
         </p>
     </ng-container>
+
+    <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
 
     <button [disabled]="loginFormGroup.invalid" mat-raised-button color="primary">Login</button>
   </fieldset>

@@ -84,12 +84,14 @@
         </button>
       </mat-form-field>
 
-      <ng-container *ngIf="passwordsGroup.controls['rePassword'].touched && passwordsGroup.controls['rePassword'].invalid">
-        <p *ngIf="passwordsGroup.controls['rePassword'].errors?.['passwordMatch']" class="error">
-            Passwords don't match
+      <ng-container *ngIf="passwordsGroup.controls['rePassword'].touched && passwordsGroup.hasError('passwordMatch')">
+        <p class="error">
+          Passwords don't match
         </p>
       </ng-container>
     </div>
+
+    <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
 
     <button
       [disabled]="registerFormGroup.invalid"

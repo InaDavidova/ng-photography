@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormControl,
   Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { passwordMatch } from '../util';
-import { UserService } from 'src/app/core/user.service';
+import { AuthService } from 'src/app/auth.service';
 import { IUser } from 'src/app/interfaces/userData';
 
 @Component({
@@ -18,48 +20,69 @@ import { IUser } from 'src/app/interfaces/userData';
 export class RegisterComponent {
   hide: boolean = true;
   hide2: boolean = true;
-  passwordControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(6),
-  ]);
+  errorMessage: string = '';
+ 
+  checkPasswords: ValidatorFn = (
+    group: AbstractControl
+  ): ValidationErrors | null => {
+    if (group.get('password')?.value !== group.get('rePassword')?.value) {
+      return {
+        passwordMatch: true,
+      };
+    }
+    return null;
+  };
 
   get passwordsGroup(): FormGroup {
     return this.registerFormGroup.controls['passwords'] as FormGroup;
   }
+
   registerFormGroup: FormGroup = this.formBuilder.group({
     email: new FormControl('', [Validators.required, Validators.email]),
     username: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
     ]),
-    passwords: new FormGroup({
-      password: this.passwordControl,
-      rePassword: new FormControl('', [passwordMatch(this.passwordControl)]),
-    }),
+    passwords: new FormGroup(
+      {
+        password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(6),
+        ]),
+        rePassword: new FormControl(''),
+      },
+      { validators: this.checkPasswords }
+    ),
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService,
-  )
-  {}
+    private authService: AuthService
+  ) {
+    this.registerFormGroup.valueChanges.subscribe(() => {
+      this.errorMessage = '';
+    });
+  }
 
   handleRegister(): void {
-    const { username, email, passwords} = this.registerFormGroup.value;
-    
+    const { username, email, passwords } = this.registerFormGroup.value;
+
     const body: IUser = {
       username: username,
       email: email,
       password: passwords.password,
-    }
-    console.log(body);
+    };
 
-   const result = this.userService.register$(body).subscribe(() => {
-      this.router.navigate(['/home']);
-    })
+    const result = this.authService.register$(body).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+      },
+    });
 
     console.log(result);
-    
   }
 }
