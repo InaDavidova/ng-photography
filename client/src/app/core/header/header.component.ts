@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (this.message) {
         setTimeout(() => {
           this.messageNotificator.clear();
-        }, 2000);
+        }, 2500);
       }
     });
   }

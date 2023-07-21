@@ -93,6 +93,7 @@ li a {
   font-style: italic;
   box-shadow: 0 2px 7px rgb(204, 204, 204);
   background-color: rgba(238, 74, 74, 0.699);
+  animation: fadeout 2.6s ease-in;
 }
 
 .error-message {
@@ -101,4 +102,16 @@ li a {
 
 .success-message {
   background-color: rgba(99, 230, 81, 0.699);
+}
+
+@keyframes fadeout{
+  0%{
+    opacity: 1;
+  }
+  40%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
 }
