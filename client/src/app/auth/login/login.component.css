@@ -17,8 +17,8 @@ h2 {
 fieldset {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  max-width: 500px;
+  align-items: center;
+  width: 35%;
   padding: 5%;
   background-color: #c8d1d4;
   border-radius: 10px;

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { MessageNotificatorService } from 'src/app/core/message-notificator.service';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
+    private messageNotificator: MessageNotificatorService,
   ) {
     this.loginFormGroup.valueChanges.subscribe(() => {
       this.errorMessage = '';
@@ -47,6 +49,8 @@ export class LoginComponent implements OnInit {
         } else {
           this.router.navigate(['/home']);
         }
+
+        this.messageNotificator.notifyForMessage({text:'Successfully logged in!', type:'success'});
       },
       error: (err) => {
         this.errorMessage = err.error.message;

@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { MessageNotificatorService } from 'src/app/core/message-notificator.service';
 import { IUser } from 'src/app/interfaces/userData';
 
 @Component({
@@ -58,7 +59,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageNotificator: MessageNotificatorService,
   ) {
     this.registerFormGroup.valueChanges.subscribe(() => {
       this.errorMessage = '';
@@ -77,6 +79,7 @@ export class RegisterComponent {
     const result = this.authService.register$(body).subscribe({
       next: () => {
         this.router.navigate(['/home']);
+        this.messageNotificator.notifyForMessage({text:'Successfully registered!', type:'success'});
       },
       error: (err) => {
         this.errorMessage = err.error.message;
