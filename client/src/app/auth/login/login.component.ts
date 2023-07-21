@@ -5,7 +5,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.loginFormGroup.valueChanges.subscribe(() => {
       this.errorMessage = '';
@@ -41,7 +42,11 @@ export class LoginComponent implements OnInit {
     this.errorMessage = '';
     this.authService.login$(this.loginFormGroup.value).subscribe({
       next: () => {
-        this.router.navigate(['/home']);
+        if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
+          this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['redirect-to'])
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error: (err) => {
         this.errorMessage = err.error.message;

@@ -12,6 +12,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreateComponent } from './pages/create/create.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CatalogComponent,
     DetailsComponent,
     NotFoundComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,

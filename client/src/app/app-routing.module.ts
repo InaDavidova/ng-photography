@@ -6,6 +6,8 @@ import { DetailsComponent } from './pages/details/details.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CreateComponent } from './pages/create/create.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: 'home', redirectTo: '/' },
@@ -14,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent },
   { path: 'catalog', component: CatalogComponent },
+  { path: 'create', component: CreateComponent, canActivate:[AuthGuard] },
   { path: 'details/:id', component: DetailsComponent },
   { path: '**', component: NotFoundComponent },
 ];
