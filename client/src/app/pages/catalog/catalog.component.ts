@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPhotoData } from 'src/app/interfaces/photoData';
+import { IPost } from 'src/app/interfaces/photoData';
 import { data } from 'src/app/storage/data';
 
 @Component({
@@ -8,7 +8,7 @@ import { data } from 'src/app/storage/data';
   styleUrls: ['./catalog.component.css'],
 })
 export class CatalogComponent implements OnInit {
-  data!: IPhotoData[];
+  data!: IPost[];
   isLoading!: boolean;
 
   ngOnInit(): void {
