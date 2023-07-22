@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IUser } from './interfaces/userData';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, map } from 'rxjs';
+import { Observable, BehaviorSubject, map, tap, catchError, EMPTY } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +37,13 @@ export class AuthService {
     return this.httpClient.post<void>(
       `${this.baseUrl}/logout`, {}, { withCredentials: true } 
     );
+  }
+
+  authenticate(): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${this.baseUrl}/users/profile`, { withCredentials: true })
+    .pipe(tap(currentProfile => this.handleLogin(currentProfile)), catchError((err) => {
+      return EMPTY;
+    }));
   }
 
   handleLogin(newUser: IUser) {
