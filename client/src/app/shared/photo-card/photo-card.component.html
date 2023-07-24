@@ -1,8 +1,8 @@
 <article>
-  <a [routerLink]="['/details/' + data.id]">
+  <a [routerLink]="['/details/' + data._id]">
     <img src="{{ data.image }}" alt="picture of {{ data.title }}" />
     <h2>{{ data.title }}</h2>
-    <p>By {{ data.ownerId }}</p>
+    <p>By {{ data.owner.username }}</p>
   </a>
   <button><i class="fa-solid fa-heart" style="color: #f30a0a"></i></button>
 </article>

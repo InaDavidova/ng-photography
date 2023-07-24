@@ -1,12 +1,16 @@
 <div *ngIf="!isLoading; else loadingIndicator" class="content">
-  <app-photo-card
-    *ngFor="let photoData of data"
-    [photoData]="photoData"
-  ></app-photo-card>
+  <ng-container *ngIf="!!data.length; else noPosts">
+    <app-photo-card
+      *ngFor="let photoData of data"
+      [photoData]="photoData"
+    ></app-photo-card>
+  </ng-container>
 </div>
 
 <ng-template #loadingIndicator>
-  <div  class="content">
-    Loading ...
-  </div>
+  <p class="alert loader">Loading ...</p>
+</ng-template>
+
+<ng-template #noPosts>
+  <div class="alert">There are NO posts yet!</div>
 </ng-template>

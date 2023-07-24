@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IPost } from '../interfaces/photoData';
+import { IPost, IPostResponse } from '../interfaces/photoData';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,8 +11,30 @@ export class PostService {
 
   constructor(private httpClient: HttpClient) {}
 
-  addPost$(body: {title: string,location: string, description: string, image: string, likes: string[], ownerId: string}): Observable<IPost> {
+  getPosts$(limit?: number): Observable<IPostResponse[]> {
+    return this.httpClient.get<IPostResponse[]>(
+      `${this.baseUrl}/posts${limit ? `?limit=${limit}` : ''}`
+    );
+  }
+
+  getPostById(id: string): Observable<IPost> {
+    return this.httpClient.get<IPost>(`${this.baseUrl}/posts/${id}`);
+  }
+
+  addPost$(body: {title: string,location: string, description: string, image: string, owner: string}): Observable<IPost> {
     return this.httpClient.post<IPost>(`${this.baseUrl}/posts`, body, {
+      withCredentials: true,
+    });
+  }
+
+  editPost$(body: {title: string, location: string, description: string, image: string}): Observable<IPost> {
+    return this.httpClient.post<IPost>(`${this.baseUrl}/posts`, body, {
+      withCredentials: true,
+    });
+  }
+
+  deletePost$(postId: string): Observable<IPost> {
+    return this.httpClient.delete<IPost>(`${this.baseUrl}/posts/${postId}`, {
       withCredentials: true,
     });
   }

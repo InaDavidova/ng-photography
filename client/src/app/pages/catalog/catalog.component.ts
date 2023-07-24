@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IPost } from 'src/app/interfaces/photoData';
-import { data } from 'src/app/storage/data';
+import { PostService } from 'src/app/core/post.service';
+import { IPostResponse } from 'src/app/interfaces/photoData';
 
 @Component({
   selector: 'app-catalog',
@@ -8,17 +8,17 @@ import { data } from 'src/app/storage/data';
   styleUrls: ['./catalog.component.css'],
 })
 export class CatalogComponent implements OnInit {
-  data!: IPost[];
+  data!: IPostResponse[];
   isLoading!: boolean;
+
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
     this.isLoading = true;
 
-    // a request for data here
-    setTimeout(() => {
-      this.data = data;
+    this.postService.getPosts$().subscribe((postList) => {
+      this.data = postList;
       this.isLoading = false;
-    },1000);
-
+    });
   }
 }

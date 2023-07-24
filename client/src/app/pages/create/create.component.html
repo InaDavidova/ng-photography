@@ -1,1 +1,60 @@
-<p>create works!</p>
+<form [formGroup]="createFormGroup"  (ngSubmit)="handleCreatePost()">
+    <h2>Craete Post</h2>
+  
+    <fieldset>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput />
+      </mat-form-field>
+  
+      <ng-container *ngIf="createFormGroup.controls['title'].touched && createFormGroup.controls['title'].invalid">
+          <p *ngIf="createFormGroup.controls['title'].errors?.['required']" class="error">
+            Title is required
+          </p>
+      </ng-container>
+  
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput></textarea>
+      </mat-form-field>
+  
+      <ng-container *ngIf="createFormGroup.controls['description'].touched && createFormGroup.controls['description'].invalid">
+          <p *ngIf="createFormGroup.controls['description'].errors?.['required']" class="error">
+            Description is required
+          </p>
+    
+          <p *ngIf="createFormGroup.controls['description'].errors?.['maxlength']" class="error">
+            Description has to be maximum 250 characters
+          </p>
+      </ng-container>
+  
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input formControlName="location" matInput />
+      </mat-form-field>
+  
+      <ng-container *ngIf="createFormGroup.controls['location'].touched && createFormGroup.controls['location'].invalid">
+          <p *ngIf="createFormGroup.controls['location'].errors?.['required']" class="error">
+            Location is required
+          </p>
+      </ng-container>
+
+      <div class="file-uploader">
+        <label for="file">Upload picture * <span>(max 50MB)</span></label>
+        <input formControlName="image" type="file" accept="image/*" name="file" (change)="onFileSelected($event)"/>
+      </div>
+     
+      <p *ngIf="fileErrorMessage" class="error">{{fileErrorMessage}}</p>
+  
+      <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+  
+      <button
+        [disabled]="createFormGroup.invalid || !!fileErrorMessage"
+        mat-raised-button
+        color="primary"
+      >
+        Create
+      </button>
+    </fieldset>
+  </form>
+  

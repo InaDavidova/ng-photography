@@ -1,10 +1,10 @@
 const { userModel, postModel } = require('../models');
 
-function newPost(title, location, description, image, ownerId) {
-    return postModel.create({ title, location, description, image, ownerId })
+function newPost(title, location, description, image, owner) {
+    return postModel.create({ title, location, description, image, owner })
         .then(post => {
             return Promise.all([
-                userModel.updateOne({ _id: ownerId }, { $push: { posts: post._id }}),
+                userModel.updateOne({ _id: owner }, { $push: { posts: post._id }}),
             ])
         })
 }
@@ -15,10 +15,19 @@ function getLatestsPosts(req, res, next) {
     postModel.find()
         .sort({ created_at: -1 })
         .limit(limit)
-        .populate('ownerId')
+        .populate('owner')
         .then(posts => {
             res.status(200).json(posts)
         })
+        .catch(next);
+}
+
+function getPostById(req, res, next) {
+    const { postId } = req.params;
+
+    postModel.findById(postId)
+        .populate('owner')
+        .then(post => res.json(post))
         .catch(next);
 }
 
@@ -81,6 +90,7 @@ function like(req, res, next) {
 module.exports = {
     getLatestsPosts,
     newPost,
+    getPostById,
     createPost,
     editPost,
     deletePost,

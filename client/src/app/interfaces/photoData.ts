@@ -1,33 +1,22 @@
 export interface IPost {
-  id: string;
   title: string;
-  location:string;
-  description:string;
+  location: string;
+  description: string;
+  image: string;
+  owner: string;
+}
+
+export interface IPostResponse {
+  _id: string;
+  title: string;
+  location: string;
+  description: string;
   image: string;
   likes: string[];
-  ownerId: string;
+  owner: {
+    username: string;
+    email: string;
+    posts: IPost[];
+    _id: string;
+  };
 }
-// title: {
-//   type: String,
-//   required: true
-// },
-// location: {
-//   type: String,
-//   required: true
-// },
-// description: {
-//   type: String,
-//   required: true
-// },
-// image: {
-//   type: String,
-//   required: true
-// },
-// likes: [{
-//   type: ObjectId,
-//   ref: "User"
-// }],
-// ownerId: {
-//   type: ObjectId,
-//   ref: "User"
-// },

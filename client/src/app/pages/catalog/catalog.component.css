@@ -1,8 +1,21 @@
-.content{
+.content {
     display: flex;
     flex-flow: row wrap;
     gap: 20px;
     padding: 25px;
     align-items: center;
     align-content: flex-start;
+}
+
+.alert {
+    color: #f2f8fa;
+    margin: auto;
+    margin-top: 30vh;
+    letter-spacing: 1px;
+    font-size: larger;
+}
+
+.loader {
+   margin: 30vh 50%;
+   width: max-content;
 }

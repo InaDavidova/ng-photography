@@ -22,7 +22,7 @@ const postSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User"
     }],
-    ownerId: {
+    owner: {
         type: ObjectId,
         ref: "User"
     },
