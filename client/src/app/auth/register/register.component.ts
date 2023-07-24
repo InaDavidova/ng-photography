@@ -26,7 +26,7 @@ export class RegisterComponent {
   checkPasswords: ValidatorFn = (
     group: AbstractControl
   ): ValidationErrors | null => {
-    if (group.get('password')?.value !== group.get('rePassword')?.value) {
+    if (group.get('password')?.value.trim() !== group.get('rePassword')?.value.trim()) {
       return {
         passwordMatch: true,
       };
@@ -71,9 +71,9 @@ export class RegisterComponent {
     const { username, email, passwords } = this.registerFormGroup.value;
 
     const body: IUser = {
-      username: username,
-      email: email,
-      password: passwords.password,
+      username: username.trim().toLowerCase(),
+      email: email.trim().toLowerCase(),
+      password: passwords.password.trim(),
     };
 
     const result = this.authService.register$(body).subscribe({

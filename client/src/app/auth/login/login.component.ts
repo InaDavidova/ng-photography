@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private messageNotificator: MessageNotificatorService,
+    private messageNotificator: MessageNotificatorService
   ) {
     this.loginFormGroup.valueChanges.subscribe(() => {
       this.errorMessage = '';
@@ -42,19 +42,30 @@ export class LoginComponent implements OnInit {
 
   handleLogin(): void {
     this.errorMessage = '';
-    this.authService.login$(this.loginFormGroup.value).subscribe({
-      next: () => {
-        if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
-          this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['redirect-to'])
-        } else {
-          this.router.navigate(['/home']);
-        }
+    const { email, password } = this.loginFormGroup.value;
+    this.authService
+      .login$({
+        email: email.trim().toLowerCase(),
+        password: password.trim(),
+      })
+      .subscribe({
+        next: () => {
+          if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
+            this.router.navigateByUrl(
+              this.activatedRoute.snapshot.queryParams['redirect-to']
+            );
+          } else {
+            this.router.navigate(['/home']);
+          }
 
-        this.messageNotificator.notifyForMessage({text:'Successfully logged in!', type:'success'});
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message;
-      },
-    });
+          this.messageNotificator.notifyForMessage({
+            text: 'Successfully logged in!',
+            type: 'success',
+          });
+        },
+        error: (err) => {
+          this.errorMessage = err.error.message;
+        },
+      });
   }
 }
