@@ -28,39 +28,10 @@ li:has(.active-link) {
   border-top: 1vh solid #f2f8fa;
   border-bottom: 1px solid rgb(28, 28, 34);
   height: 12vh;
-  box-shadow: -15px 30px rgb(28, 28, 34);
-}
-
-li:has(.active-link)::before {
-  content: "";
-  width: 30px;
-  position: absolute;
-  bottom:6px;
-  right: -29px;
-  background-color: #f2f8fa;
-  /* background-color: bisque; */
-  border: none;
-  border-bottom-left-radius: 55%;
-  height: 52px;
-}
-
-li:has(.active-link)::after {
-  content: "";
-  width: 30px;
-  position: absolute;
-  bottom:6px;
-  left: -29px;
-  background-color: #f2f8fa;
-  /* background-color: bisque; */
-  border: none;
-  border-bottom-right-radius: 55%;
-  height: 52px;
 }
 
 li a.active-link {
   color: #f2f8fa;
-  box-shadow: 90px 21px rgb(28, 28, 34);
-
 }
 
 li {

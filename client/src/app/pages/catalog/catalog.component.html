@@ -3,6 +3,7 @@
     <app-photo-card
       *ngFor="let photoData of data"
       [photoData]="photoData"
+      [user]="currentUser"
     ></app-photo-card>
   </ng-container>
 </div>

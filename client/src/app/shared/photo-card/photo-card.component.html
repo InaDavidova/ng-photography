@@ -4,5 +4,8 @@
     <h2>{{ data.title }}</h2>
     <p>By {{ data.owner.username }}</p>
   </a>
-  <button><i class="fa-solid fa-heart" style="color: #f30a0a"></i></button>
+  <button *ngIf="user && user._id !== data.owner._id && !data.likes.includes(user._id!) && !liked" (click)="likeHandler()">
+    <!-- <i class="fa-solid fa-heart" style="color: #f30a0a"></i> -->
+    like
+  </button>
 </article>

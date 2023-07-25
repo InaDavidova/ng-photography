@@ -17,17 +17,28 @@ export class PostService {
     );
   }
 
-  getPostById(id: string): Observable<IPost> {
+  getPostById$(id: string): Observable<IPost> {
     return this.httpClient.get<IPost>(`${this.baseUrl}/posts/${id}`);
   }
 
-  addPost$(body: {title: string,location: string, description: string, image: string, owner: string}): Observable<IPost> {
+  addPost$(body: {
+    title: string;
+    location: string;
+    description: string;
+    image: string;
+    owner: string;
+  }): Observable<IPost> {
     return this.httpClient.post<IPost>(`${this.baseUrl}/posts`, body, {
       withCredentials: true,
     });
   }
 
-  editPost$(body: {title: string, location: string, description: string, image: string}): Observable<IPost> {
+  editPost$(body: {
+    title: string;
+    location: string;
+    description: string;
+    image: string;
+  }): Observable<IPost> {
     return this.httpClient.post<IPost>(`${this.baseUrl}/posts`, body, {
       withCredentials: true,
     });
@@ -37,5 +48,15 @@ export class PostService {
     return this.httpClient.delete<IPost>(`${this.baseUrl}/posts/${postId}`, {
       withCredentials: true,
     });
+  }
+
+  likePost$(postId: string): Observable<IPost> {
+    return this.httpClient.put<IPost>(
+      `${this.baseUrl}/likes/${postId}`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
   }
 }
