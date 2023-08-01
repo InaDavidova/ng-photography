@@ -1,7 +1,7 @@
 <header>
   <h1>PhotoHub</h1>
-  <p  *ngIf="(isLoggedIn$ | async)">
-    User: {{(currentUser$ | async)?.username}}
+  <p  *ngIf="(isLoggedIn$ | async)" class="user">
+    user: <span>{{(currentUser$ | async)?.username}}</span>
   </p>
   <nav>
     <ul>

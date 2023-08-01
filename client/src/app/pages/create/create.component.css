@@ -27,12 +27,14 @@ fieldset {
 
 .file-uploader {
   width: 100%;
+  max-width: 300px;
   margin-bottom: 15px;
 }
 
 .file-uploader label {
   letter-spacing: 0.5px;
   font-size: medium;
+  display: block;
 }
 
 .file-uploader label span {

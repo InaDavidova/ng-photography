@@ -75,14 +75,26 @@ li a {
   background-color: rgba(99, 230, 81, 0.699);
 }
 
-@keyframes fadeout{
-  0%{
+.user {
+  font-size: small;
+  position: absolute;
+  left: 3.5%;
+  top: 7vh;
+}
+
+.user span {
+  text-transform: capitalize;
+  color: rgb(26, 184, 52);
+}
+
+@keyframes fadeout {
+  0% {
     opacity: 1;
   }
-  40%{
+  40% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
 }

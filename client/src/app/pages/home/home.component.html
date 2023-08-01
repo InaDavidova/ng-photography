@@ -1,3 +1,36 @@
-<h1>Welcome to the PhotoHub!</h1>
+<div class="main">
+  <div class="introduction">
+    <h1>Welcome to the PhotoHub!</h1>
 
-<p>This is the only place you need to show you photography work and get inspired by others!</p>
+    <p>
+      This is the only place you need to show your photography work and get
+      inspired by others!
+    </p>
+  </div>
+
+  <div class="photoWraper">
+    <img src="../../../assets/photographer.jpg" alt="Photographer" />
+  </div>
+</div>
+
+<h2>
+    Here are our latest additions:
+</h2>
+
+<div *ngIf="!isLoading; else loadingIndicator" class="content">
+  <ng-container *ngIf="!!data.length; else noPosts">
+    <app-photo-card
+      *ngFor="let photoData of data"
+      [photoData]="photoData"
+      [user]="currentUser"
+    ></app-photo-card>
+  </ng-container>
+</div>
+
+<ng-template #loadingIndicator>
+  <p class="alert loader">Loading ...</p>
+</ng-template>
+
+<ng-template #noPosts>
+  <div class="alert">There are NO posts yet!</div>
+</ng-template>
