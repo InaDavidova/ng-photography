@@ -1,10 +1,11 @@
 <div class="main">
   <div class="introduction">
-    <h1>Welcome to the PhotoHub!</h1>
-
+    <h1>Welcome to PhotoHub - Your Creative Space!</h1>
     <p>
-      This is the only place you need to show your photography work and get
-      inspired by others!
+      PhotoHub is where passionate amateur photographers gather. Showcase your
+      best shots, explore new techniques, and inspire others with your artistic
+      vision. Join a dynamic community, discover captivating images, like and be
+      liked while we celebrate the joy of photography together.
     </p>
   </div>
 
@@ -13,9 +14,7 @@
   </div>
 </div>
 
-<h2>
-    Here are our latest additions:
-</h2>
+<h2>Here are our latest additions:</h2>
 
 <div *ngIf="!isLoading; else loadingIndicator" class="content">
   <ng-container *ngIf="!!data.length; else noPosts">

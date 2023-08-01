@@ -1,6 +1,7 @@
 * {
   color: #b6bbbd;
   letter-spacing: 1px;
+  font-family: "Segoe UI", Roboto, sans-serif;
 }
 
 .main {
@@ -15,10 +16,11 @@
   flex-direction: column;
   justify-content: center;
   font-size: x-large;
+  width: 50%;
 }
 
 .photoWraper {
-  width: 80%;
+  width: 50%;
   border-radius: 5px;
   max-width: 300px;
   background-image: url("../../../assets/photographer.jpg");
@@ -32,7 +34,7 @@
 }
 
 h2 {
-    margin-top: 50px;
+  margin-top: 50px;
   text-align: center;
   color: #6cee5b;
   letter-spacing: 2px;
@@ -58,6 +60,6 @@ h2 {
 }
 
 .loader {
- margin: 30vh 50%;
- width: max-content;
+  margin: 30vh 50%;
+  width: max-content;
 }
