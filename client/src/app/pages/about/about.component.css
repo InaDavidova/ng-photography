@@ -1,0 +1,27 @@
+p {
+  color: #f2f8fa;
+  margin: 25px 70px;
+  letter-spacing: 1px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  line-height: 25px;
+}
+
+p:first-of-type {
+  margin-top: 70px;
+}
+
+p:last-of-type {
+  font-weight: 600;
+  color: rgb(253, 178, 85);
+}
+
+.greeting {
+  font-size: x-large;
+  font-weight: 600;
+  color: rgb(255, 198, 129);
+}
+
+.name {
+  display: block;
+  font: italic;
+}
