@@ -2,11 +2,6 @@
 body{
     background-color: rgb(28, 28, 34);
     margin: 0;
-    /* background-image: url("https://media.istockphoto.com/id/1171206633/fr/photo/camping-la-nuit-dans-les-montagnes-sous-le-ciel-%C3%A9toil%C3%A9.jpg?s=612x612&w=0&k=20&c=glQPovgLl0IewZHxWV1k9mmhIvlVy8X4UwCw70LFdmE=");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh; */
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,24 @@
+footer {
+  background-color: rgb(69, 69, 78);
+  height: 8vh;
+  padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p {
+  display: inline;
+}
+
+a {
+  margin: auto;
+  text-decoration: none;
+  color: #f2f8fa;
+  letter-spacing: 1px;
+}
+
+a:hover {
+  font-size: larger;
+  transition: 0.4s;
+}

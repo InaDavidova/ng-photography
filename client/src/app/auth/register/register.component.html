@@ -1,104 +1,137 @@
-<form [formGroup]="registerFormGroup"  (ngSubmit)="handleRegister()">
-  <h2>Register Form</h2>
+<div class="main">
+  <form [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
+    <h2>Register Form</h2>
 
-  <fieldset>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput />
-    </mat-form-field>
+    <fieldset>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput />
+      </mat-form-field>
 
-    <ng-container *ngIf="registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid">
-
-        <p *ngIf="registerFormGroup.controls['email'].errors?.['required']" class="error">
+      <ng-container
+        *ngIf="
+          registerFormGroup.controls['email'].touched &&
+          registerFormGroup.controls['email'].invalid
+        "
+      >
+        <p
+          *ngIf="registerFormGroup.controls['email'].errors?.['required']"
+          class="error"
+        >
           Email is required
         </p>
-  
-        <p *ngIf="registerFormGroup.controls['email'].errors?.['email']" class="error">
+
+        <p
+          *ngIf="registerFormGroup.controls['email'].errors?.['email']"
+          class="error"
+        >
           Email is not valid
         </p>
-  
-    </ng-container>
+      </ng-container>
 
-    <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input formControlName="username" matInput />
-    </mat-form-field>
-
-    <ng-container *ngIf="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid">
-
-        <p *ngIf="registerFormGroup.controls['username'].errors?.['required']" class="error">
-            Username is required
-        </p>
-  
-        <p *ngIf="registerFormGroup.controls['username'].errors?.['minlength']" class="error">
-            Username has to be at least 3 characters
-        </p>
-  
-    </ng-container>
-
-    <div formGroupName="passwords" class="passwords-div">
       <mat-form-field>
-        <mat-label>Enter your password</mat-label>
-        <input
-          formControlName="password"
-          matInput
-          [type]="hide ? 'password' : 'text'"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput />
       </mat-form-field>
 
-      <ng-container *ngIf="passwordsGroup.controls['password'].touched && passwordsGroup.controls['password'].invalid">
-      
-        <p *ngIf="passwordsGroup.controls['password'].errors?.['required']" class="error">
+      <ng-container
+        *ngIf="
+          registerFormGroup.controls['username'].touched &&
+          registerFormGroup.controls['username'].invalid
+        "
+      >
+        <p
+          *ngIf="registerFormGroup.controls['username'].errors?.['required']"
+          class="error"
+        >
+          Username is required
+        </p>
+
+        <p
+          *ngIf="registerFormGroup.controls['username'].errors?.['minlength']"
+          class="error"
+        >
+          Username has to be at least 3 characters
+        </p>
+      </ng-container>
+
+      <div formGroupName="passwords" class="passwords-div">
+        <mat-form-field>
+          <mat-label>Enter your password</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <ng-container
+          *ngIf="
+            passwordsGroup.controls['password'].touched &&
+            passwordsGroup.controls['password'].invalid
+          "
+        >
+          <p
+            *ngIf="passwordsGroup.controls['password'].errors?.['required']"
+            class="error"
+          >
             Password is required
-        </p>
-    
-        <p *ngIf="passwordsGroup.controls['password'].errors?.['minlength']" class="error">
+          </p>
+
+          <p
+            *ngIf="passwordsGroup.controls['password'].errors?.['minlength']"
+            class="error"
+          >
             Password needs to be at least 6 characters
-        </p>
-      </ng-container>
+          </p>
+        </ng-container>
 
-      <mat-form-field>
-        <mat-label>Repeat your password</mat-label>
-        <input
-          formControlName="rePassword"
-          matInput
-          [type]="hide2 ? 'password' : 'text'"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide2 = !hide2"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide2"
+        <mat-form-field>
+          <mat-label>Repeat your password</mat-label>
+          <input
+            formControlName="rePassword"
+            matInput
+            [type]="hide2 ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide2 = !hide2"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide2"
+          >
+            <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <ng-container
+          *ngIf="
+            passwordsGroup.controls['rePassword'].touched &&
+            passwordsGroup.hasError('passwordMatch')
+          "
         >
-          <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-      </mat-form-field>
+          <p class="error">Passwords don't match</p>
+        </ng-container>
+      </div>
 
-      <ng-container *ngIf="passwordsGroup.controls['rePassword'].touched && passwordsGroup.hasError('passwordMatch')">
-        <p class="error">
-          Passwords don't match
-        </p>
-      </ng-container>
-    </div>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 
-    <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
-
-    <button
-      [disabled]="registerFormGroup.invalid"
-      mat-raised-button
-      color="primary"
-    >
-      Register
-    </button>
-  </fieldset>
-</form>
+      <button
+        [disabled]="registerFormGroup.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Register
+      </button>
+    </fieldset>
+  </form>
+</div>

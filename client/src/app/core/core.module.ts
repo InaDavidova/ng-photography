@@ -5,11 +5,12 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [CommonModule, AppRoutingModule],
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent, HttpClientModule],
+  declarations: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, HttpClientModule],
   providers: [],
 })
 export class CoreModule {
@@ -18,7 +19,11 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         { provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor },
-        { provide: HTTP_INTERCEPTORS, multi: true, useClass: ErrorHandlerInterceptor },
+        {
+          provide: HTTP_INTERCEPTORS,
+          multi: true,
+          useClass: ErrorHandlerInterceptor,
+        },
         //all services from this module
       ],
     };
