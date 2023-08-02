@@ -1,1 +1,24 @@
-<p>details works!</p>
+<div class="main">
+  <h2>Details</h2>
+
+  <div *ngIf="!isLoading; else loadingIndicator" class="content">
+    <img src="{{ post?.image }}" alt="picture of {{ post?.title }}" />
+    <div class="info">
+        <p><span>Title:</span> {{post?.title}}</p>
+        <p><span>Description:</span> {{post?.description}}</p>
+        <p><span>Location:</span> {{post?.location}}</p>
+        <p><span>Author:</span> {{post?.owner.username | titlecase}}</p>
+        <p><span>Uploaded:</span> {{post?.created_at | date: 'mediumDate'}}</p>
+        <p><span>Likes:</span> {{post?.likes.length}}</p>
+    </div>
+
+    <div *ngIf="currentUser?._id === post?.owner._id" class="buttons">
+      <button class="update">Update</button>
+      <button class="delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingIndicator>
+  <p class="loader">Loading ...</p>
+</ng-template>
