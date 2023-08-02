@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CreateComponent } from './pages/create/create.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { UpdateComponent } from './pages/update/update.component';
 
 const routes: Routes = [
   { path: 'home', redirectTo: '/' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'create', component: CreateComponent, canActivate:[AuthGuard] },
+  { path: 'update/:id', component: UpdateComponent, canActivate:[AuthGuard] },
   { path: 'details/:id', component: DetailsComponent },
   { path: '**', component: NotFoundComponent },
 ];

@@ -30,8 +30,6 @@ export class CatalogComponent implements OnInit {
     this.postService.getPosts$().subscribe((postList) => {
       this.data = postList;
       this.isLoading = false;
-      console.log(this.data);
-      
     });
   }
 }

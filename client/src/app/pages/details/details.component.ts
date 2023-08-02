@@ -27,7 +27,6 @@ export class DetailsComponent implements OnInit {
     this.postService.getPostById$(id).subscribe((post) => {
       this.post = post;
       this.isLoading = false;
-      console.log(this.post);
     });
 
     this.authService.currentUser$.subscribe((user) => {

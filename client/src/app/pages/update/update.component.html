@@ -1,0 +1,112 @@
+<div class="main">
+  <form
+    *ngIf="isLoading == false"
+    [formGroup]="updateFormGroup"
+    (ngSubmit)="handleUpdatePost()"
+  >
+    <h2>Update Post</h2>
+
+    <fieldset>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input
+          formControlName="title"
+          matInput
+          value="{{ post && post.title }}"
+        />
+      </mat-form-field>
+
+      <ng-container
+        *ngIf="
+          updateFormGroup.controls['title'].touched &&
+          updateFormGroup.controls['title'].invalid
+        "
+      >
+        <p
+          *ngIf="updateFormGroup.controls['title'].errors?.['required']"
+          class="error"
+        >
+          Title is required
+        </p>
+      </ng-container>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea
+          formControlName="description"
+          matInput
+          value="{{ post && post.description }}"
+        ></textarea>
+      </mat-form-field>
+
+      <ng-container
+        *ngIf="
+          updateFormGroup.controls['description'].touched &&
+          updateFormGroup.controls['description'].invalid
+        "
+      >
+        <p
+          *ngIf="updateFormGroup.controls['description'].errors?.['required']"
+          class="error"
+        >
+          Description is required
+        </p>
+
+        <p
+          *ngIf="updateFormGroup.controls['description'].errors?.['maxlength']"
+          class="error"
+        >
+          Description has to be maximum 250 characters
+        </p>
+      </ng-container>
+
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input
+          formControlName="location"
+          matInput
+          value="{{ post && post.location }}"
+        />
+      </mat-form-field>
+
+      <!-- {{ updateFormGroup.controls["location"].value | json }} -->
+
+      <ng-container
+        *ngIf="
+          updateFormGroup.controls['location'].touched &&
+          updateFormGroup.controls['location'].invalid
+        "
+      >
+        <p
+          *ngIf="updateFormGroup.controls['location'].errors?.['required']"
+          class="error"
+        >
+          Location is required
+        </p>
+      </ng-container>
+
+      <div class="file-uploader">
+        <label for="file">Upload picture * <span>(max 50MB)</span></label>
+        <input
+          formControlName="image"
+          type="file"
+          accept="image/*"
+          name="file"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <p *ngIf="fileErrorMessage" class="error">{{ fileErrorMessage }}</p>
+
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+      <button
+        [disabled]="updateFormGroup.invalid || !!fileErrorMessage"
+        mat-raised-button
+        color="primary"
+      >
+        Update
+      </button>
+    </fieldset>
+  </form>
+</div>

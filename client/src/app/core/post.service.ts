@@ -38,8 +38,8 @@ export class PostService {
     location: string;
     description: string;
     image: string;
-  }): Observable<IPost> {
-    return this.httpClient.post<IPost>(`${this.baseUrl}/posts`, body, {
+  }, postId: string): Observable<IPost> {
+    return this.httpClient.put<IPost>(`${this.baseUrl}/posts/${postId}`, body, {
       withCredentials: true,
     });
   }

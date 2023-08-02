@@ -4,6 +4,7 @@ export interface IPost {
   description: string;
   image: string;
   owner: string;
+  _id?: string;
 }
 
 export interface IPostResponse {
