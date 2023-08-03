@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
+
     this.postService.getPosts$(3).subscribe((postList) => {
       this.data = postList;
       this.isLoading = false;
