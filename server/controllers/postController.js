@@ -68,9 +68,9 @@ function editPost(req, res, next) {
 function deletePost(req, res, next) {
   const { postId } = req.params;
   const { _id: userId } = req.user;
-
+  
   Promise.all([
-    postModel.findOneAndDelete({ _id: postId, userId }),
+    postModel.findOneAndDelete({ _id: postId, owner: userId }),
     userModel.findOneAndUpdate({ _id: userId }, { $pull: { posts: postId } }),
   ])
     .then(([deletedOne, _, __]) => {

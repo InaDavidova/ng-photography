@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { MessageNotificatorService } from 'src/app/core/message-notificator.service';
 import { PostService } from 'src/app/core/post.service';
 import { IUser } from 'src/app/interfaces/userData';
 
@@ -17,7 +18,9 @@ export class DetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private messageNotificator: MessageNotificatorService
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +35,24 @@ export class DetailsComponent implements OnInit {
     this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
     });
+  }
+
+  handleDelete() {
+    let result = confirm('Are you sure you want to delete this post?');
+
+    if (result) {
+      this.postService.deletePost$(this.post._id).subscribe({
+        next: () => {
+          this.router.navigate(['/catalog']);
+          this.messageNotificator.notifyForMessage({
+            text: 'Successfully deleted post!',
+            type: 'success',
+          });
+        },
+        error: (err) => {
+          console.log(err.error.message);
+        },
+      });
+    }
   }
 }

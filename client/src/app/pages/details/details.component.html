@@ -14,7 +14,7 @@
 
     <div *ngIf="currentUser?._id === post?.owner._id" class="buttons">
       <button class="update" routerLink="/update/{{post._id}}">Update</button>
-      <button class="delete">Delete</button>
+      <button class="delete" (click)="handleDelete()">Delete</button>
     </div>
   </div>
 </div>
