@@ -1,0 +1,19 @@
+.main {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  color: #f2f8fa;
+  letter-spacing: 1px;
+  font-size: xx-large;
+}
+
+span {
+  color: rgb(255, 106, 80);
+  padding-right: 10px;
+  font-weight: 600;
+  font-size: xxx-large;
+}
