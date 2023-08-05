@@ -1,0 +1,31 @@
+<h2>My Posts</h2>
+
+<div *ngIf="!isUserPostsLoading; else loadingIndicator" class="content">
+  <ng-container *ngIf="!!userPosts.length; else noPosts">
+    <app-photo-card
+      *ngFor="let photoData of userPosts"
+      [photoData]="photoData"
+      [user]="currentUser"
+    ></app-photo-card>
+  </ng-container>
+</div>
+
+<h3>Liked Posts</h3>
+
+<div *ngIf="!isUserLikedPostsLoading; else loadingIndicator" class="content">
+  <ng-container *ngIf="!!likedPosts.length; else noPosts">
+    <app-photo-card
+      *ngFor="let photoData of likedPosts"
+      [photoData]="photoData"
+      [user]="currentUser"
+    ></app-photo-card>
+  </ng-container>
+</div>
+
+<ng-template #loadingIndicator>
+  <p class="alert loader">Loading ...</p>
+</ng-template>
+
+<ng-template #noPosts>
+  <div class="alert">There are NO posts yet!</div>
+</ng-template>

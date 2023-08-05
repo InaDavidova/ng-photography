@@ -24,6 +24,28 @@ function getLatestsPosts(req, res, next) {
     .catch(next);
 }
 
+function getUserPosts(req, res, next) {
+  const { _id: userId } = req.user;
+
+  postModel
+    .find({owner: userId})
+    .then((posts) => {
+      res.status(200).json(posts);
+    })
+    .catch(next);
+}
+
+function getUserLikedPosts(req, res, next) {
+  const { _id: userId } = req.user;
+  postModel
+    .find({likes: [userId]})
+    .populate("owner")
+    .then((posts) => {
+      res.status(200).json(posts);
+    })
+    .catch(next);
+}
+
 function getPostById(req, res, next) {
   const { postId } = req.params;
 
@@ -68,7 +90,7 @@ function editPost(req, res, next) {
 function deletePost(req, res, next) {
   const { postId } = req.params;
   const { _id: userId } = req.user;
-  
+
   Promise.all([
     postModel.findOneAndDelete({ _id: postId, owner: userId }),
     userModel.findOneAndUpdate({ _id: userId }, { $pull: { posts: postId } }),
@@ -97,6 +119,8 @@ function like(req, res, next) {
 
 module.exports = {
   getLatestsPosts,
+  getUserPosts,
+  getUserLikedPosts,
   newPost,
   getPostById,
   createPost,

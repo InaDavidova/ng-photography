@@ -2,7 +2,7 @@
   <a [routerLink]="['/details/' + data._id]">
     <img src="{{ data.image }}" alt="picture of {{ data.title }}" />
     <h2>{{ data.title }}</h2>
-    <p>By {{ data.owner.username }}</p>
+    <p *ngIf="data.owner.username">By {{ data.owner.username }}</p>
   </a>
   <button
     *ngIf="

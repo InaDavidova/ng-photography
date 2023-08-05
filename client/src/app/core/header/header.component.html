@@ -10,6 +10,7 @@
       <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/login" routerLinkActive="active-link">Login</a></li>
       <li  *ngIf="!(isLoggedIn$ | async)"><a routerLink="/register" routerLinkActive="active-link">Register</a></li>
       <li  *ngIf="(isLoggedIn$ | async)"><a routerLink="/create" routerLinkActive="active-link">Create</a></li>
+      <li  *ngIf="(isLoggedIn$ | async)"><a routerLink="/my-posts" routerLinkActive="active-link">My Posts</a></li>
       <li  *ngIf="(isLoggedIn$ | async)"><a href="javascript:void(0);" (click)="logoutHandler()">Logout</a></li>
     </ul>
   </nav>

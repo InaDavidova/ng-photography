@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateComponent } from './pages/update/update.component';
+import { MyPostsComponent } from './pages/my-posts/my-posts.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UpdateComponent } from './pages/update/update.component';
     NotFoundComponent,
     CreateComponent,
     UpdateComponent,
+    MyPostsComponent,
   ],
   imports: [
     BrowserModule,

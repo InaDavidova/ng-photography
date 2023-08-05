@@ -17,6 +17,22 @@ export class PostService {
     );
   }
 
+  getUserPosts$(): Observable<IPostResponse[]> {
+    return this.httpClient.get<IPostResponse[]>(
+      `${this.baseUrl}/posts/my-posts`, {
+        withCredentials: true,
+      }
+    );
+  }
+
+  getUserLikedPosts$(): Observable<IPostResponse[]> {
+    return this.httpClient.get<IPostResponse[]>(
+      `${this.baseUrl}/posts/my-likes`, {
+        withCredentials: true,
+      }
+    );
+  }
+
   getPostById$(id: string): Observable<IPost> {
     return this.httpClient.get<IPost>(`${this.baseUrl}/posts/${id}`);
   }

@@ -1,0 +1,30 @@
+.content {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  padding: 70px 25px 25px 25px;
+  align-items: center;
+  align-content: flex-start;
+  min-height: 80vh;
+}
+
+h2, h3 {
+  letter-spacing: 2px;
+  color: #f2f8fa;
+  text-align: center;
+}
+
+.alert {
+  color: #f2f8fa;
+  margin: auto;
+  margin-top: 30vh;
+  letter-spacing: 1px;
+  font-size: larger;
+  min-height: 80vh;
+}
+
+.loader {
+  margin: 30vh 50%;
+  width: max-content;
+  min-height: 80vh;
+}
