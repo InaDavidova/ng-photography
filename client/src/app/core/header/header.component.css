@@ -3,17 +3,18 @@ header {
   height: 12vh;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: 1.1em;
   color: rgb(28, 28, 34);
 }
 
 header h1 {
   font-size: 1em;
+  margin-left: 25px;
 }
 
 nav {
-  width: 80%;
+  width: 65%;
 }
 
 nav ul {
@@ -42,7 +43,6 @@ li {
   padding: 0 5px;
   height: inherit;
   border-top: 1vh solid #f2f8fa;
-  /* transition: 0.3s; */
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   position: relative;
@@ -78,7 +78,7 @@ li a {
 .user {
   font-size: small;
   position: absolute;
-  left: 3.5%;
+  left: 25px;
   top: 7vh;
 }
 
