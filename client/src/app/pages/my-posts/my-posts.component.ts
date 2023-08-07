@@ -32,11 +32,16 @@ export class MyPostsComponent implements OnInit {
 
     this.postService.getUserLikedPosts$().subscribe((posts) => {
       this.isUserLikedPostsLoading = false;
-      this.likedPosts = posts;      
+      this.likedPosts = posts;
     });
 
     this.authService.currentUser$.subscribe(
       (user) => (this.currentUser = user)
     );
+  }
+
+  unlikePost(id: string) {
+    const index = this.likedPosts.findIndex((el) => el._id === id);
+    this.likedPosts.splice(index, 1);
   }
 }

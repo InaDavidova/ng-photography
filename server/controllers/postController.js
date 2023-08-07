@@ -28,7 +28,8 @@ function getUserPosts(req, res, next) {
   const { _id: userId } = req.user;
 
   postModel
-    .find({owner: userId})
+    .find({ owner: userId })
+    .populate("owner")
     .then((posts) => {
       res.status(200).json(posts);
     })
@@ -38,7 +39,7 @@ function getUserPosts(req, res, next) {
 function getUserLikedPosts(req, res, next) {
   const { _id: userId } = req.user;
   postModel
-    .find({likes: [userId]})
+    .find({ likes: [userId] })
     .populate("owner")
     .then((posts) => {
       res.status(200).json(posts);
@@ -117,6 +118,18 @@ function like(req, res, next) {
     .catch(next);
 }
 
+function unlike(req, res, next) {
+  const { postId } = req.params;
+  const { _id: userId } = req.user;
+
+  console.log("unlike");
+
+  postModel
+    .updateOne({ _id: postId }, { $pull: { likes: userId } }, { new: true })
+    .then(() => res.status(200).json({ message: "Unliked successful!" }))
+    .catch(next);
+}
+
 module.exports = {
   getLatestsPosts,
   getUserPosts,
@@ -127,4 +140,5 @@ module.exports = {
   editPost,
   deletePost,
   like,
+  unlike,
 };

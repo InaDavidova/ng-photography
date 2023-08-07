@@ -75,4 +75,14 @@ export class PostService {
       }
     );
   }
+
+  unlikePost$(postId: string): Observable<IPost> {
+    return this.httpClient.put<IPost>(
+      `${this.baseUrl}/likes/unlike/${postId}`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }

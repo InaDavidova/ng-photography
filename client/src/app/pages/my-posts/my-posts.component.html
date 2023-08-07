@@ -13,11 +13,12 @@
 <h3>Liked Posts</h3>
 
 <div *ngIf="!isUserLikedPostsLoading; else loadingIndicator" class="content">
-  <ng-container *ngIf="!!likedPosts.length; else noPosts">
+  <ng-container *ngIf="!!likedPosts.length; else noLikedPosts">
     <app-photo-card
       *ngFor="let photoData of likedPosts"
       [photoData]="photoData"
       [user]="currentUser"
+      (unliked)="unlikePost($event)"
     ></app-photo-card>
   </ng-container>
 </div>
@@ -29,3 +30,7 @@
 <ng-template #noPosts>
   <div class="alert">There are NO posts yet!</div>
 </ng-template>
+
+<ng-template #noLikedPosts>
+    <div class="alert">There are NO liked posts!</div>
+  </ng-template>

@@ -8,11 +8,21 @@
     *ngIf="
       user &&
       user._id !== data.owner._id &&
-      !data.likes.includes(user._id!) &&
-      !liked
+      !data.likes.includes(user._id!)
     "
     (click)="likeHandler()"
   >
     <i class="fa-solid fa-heart" style="color: #f30a0a"></i>
+  </button>
+
+  <button
+    *ngIf="
+      user &&
+      user._id !== data.owner._id &&
+      data.likes.includes(user._id!) 
+    "
+    (click)="unlikeHandler()"
+  >
+  <i class="fa-solid fa-heart-crack" style="color: #3c3f44;"></i>
   </button>
 </article>
