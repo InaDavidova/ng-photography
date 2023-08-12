@@ -6,3 +6,4 @@ In order to start the app:
 - in the terminal navigate to the root folder and run ```npm install```
 - navigate to the **server** folder and run ```npm start``` in order to start the server
 - navigate to the **client** folder and run ```npm start``` in order to start the client
+- You can now open the project at http://localhost:4200/
